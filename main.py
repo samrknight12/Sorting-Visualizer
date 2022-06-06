@@ -119,6 +119,19 @@ def insertion_sort(draw_info, ascending=True):
 
     return lst
 
+def selection_sort(draw_info, ascending):
+    lst = draw_info.lst
+
+    for i in range(len(lst)):
+        min_idx = i
+        for j in range(i+1, len(lst)):
+            if lst[min_idx] > lst[j]:
+                min_idx = j
+
+        lst[i], lst[min_idx] = lst[min_idx], lst[i]
+        draw_list(draw_info, {i - 1: draw_info.GREEN, i: draw_info.RED}, True)
+        yield True
+    return lst
 
 
 def main():
@@ -131,8 +144,16 @@ def main():
 
     lst = generate_starting_list(n, min_val, max_val)
     draw_info = DrawInfo(800,600, lst)
+
+
     sorting = False
     ascending = True
+    # merge_sort(draw_info, ascending)
+    # quickSort(draw_info)
+
+    sorting = False
+    ascending = True
+
 
     sorting_algorithm = bubble_sort
     sorting_algorithm_name = "Bubble Sort"
@@ -174,6 +195,11 @@ def main():
             elif event.key == pygame.K_b and not sorting:
                 sorting_algorithm = bubble_sort
                 sorting_algorithm_name = "Bubble Sort"
+
+            elif event.key == pygame.K_s and not sorting:
+                sorting_algorithm = selection_sort
+                sorting_algorithm_name = "Selection Sort"
+
     pygame.quit()
 
 if __name__ == "__main__":
