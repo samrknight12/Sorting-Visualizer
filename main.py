@@ -119,7 +119,12 @@ def draw(draw_info, algo_name, ascending):
     controls = draw_info.FONT.render("R - Reset | SPACE - Start Sorting | A - Ascending | D - Descending", 1, draw_info.BLACK)
     draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 ,38))
 
+
     sorting = draw_info.FONT.render("I - Insertion Sort | B - Bubble Sort | S - Selection Sort", 1, draw_info.BLACK)
+    draw_info.window.blit(sorting, (draw_info.width / 2 - sorting.get_width() / 2, 68))
+
+
+    sorting = draw_info.FONT.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.BLACK)
     draw_info.window.blit(sorting, (draw_info.width / 2 - sorting.get_width() / 2, 68))
 
 
@@ -196,6 +201,7 @@ def selection_sort(draw_info, ascending):
         yield True
     return lst
 
+
 def main():
     run = True
     clock = pygame.time.Clock()
@@ -207,10 +213,15 @@ def main():
     lst = generate_starting_list(n, min_val, max_val)
     draw_info = DrawInfo(800,600, lst)
 
+
     sorting = False
     ascending = True
     # merge_sort(draw_info, ascending)
     # quickSort(draw_info)
+
+    sorting = False
+    ascending = True
+
     sorting_algorithm = bubble_sort
     sorting_algorithm_name = "Bubble Sort"
     sorting_algorithm_generator = None
@@ -251,6 +262,7 @@ def main():
             elif event.key == pygame.K_b and not sorting:
                 sorting_algorithm = bubble_sort
                 sorting_algorithm_name = "Bubble Sort"
+
             elif event.key == pygame.K_s and not sorting:
                 sorting_algorithm = selection_sort
                 sorting_algorithm_name = "Selection Sort"
